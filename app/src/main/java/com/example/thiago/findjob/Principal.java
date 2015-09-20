@@ -1,13 +1,8 @@
 package com.example.thiago.findjob;
 
-import android.annotation.TargetApi;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -21,18 +16,15 @@ import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.ToggleDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 
 public class Principal extends ActionBarActivity {
     private Drawer navigationDrawerLeft;
     private AccountHeader headerNavigationLeft;
     private Toolbar mToolBar;
-    private Toolbar mToolBarBotton;
     private OnCheckedChangeListener mOnCheckedChangeListener = new OnCheckedChangeListener(){
         @Override
         public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
@@ -53,8 +45,8 @@ public class Principal extends ActionBarActivity {
         headerNavigationLeft = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withCompactStyle(false)
+                .withHeaderBackground(R.drawable.android)
                 .withSavedInstance(savedInstanceState)
-                .withHeaderBackground(R.drawable.abc_action_bar_item_background_material)
                 .addProfiles(
                         new ProfileDrawerItem().withName("Thiago Marques").withEmail("thiagohsmarques@gmail.com")
                 )
@@ -103,12 +95,6 @@ public class Principal extends ActionBarActivity {
                 })
                 .build();
 
-
-
-
-        //ADD ITENS
-
-
     }
 
     @Override
@@ -116,20 +102,5 @@ public class Principal extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_principal, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

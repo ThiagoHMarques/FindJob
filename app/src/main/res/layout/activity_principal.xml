@@ -11,13 +11,4 @@
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary" />
 
-    <ImageView
-        android:src="@drawable/logo"
-        android:layout_width="@dimen/abc_action_bar_default_height_material"
-        android:layout_height="@dimen/abc_action_bar_default_height_material" />
-
-    <include
-        android:id="@+id/inc_tb_bottom"
-        layout="@layout/toolbar_bottom"/>
-
 </RelativeLayout>
