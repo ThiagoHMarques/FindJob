@@ -1,4 +1,4 @@
-package com.example.thiago.findjob;
+package com.example.thiago.findjob.activitys;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import com.example.thiago.findjob.R;
 import com.example.thiago.findjob.fragments.DadosAlunoFragment;
 import com.example.thiago.findjob.fragments.EmpresasFragment;
 import com.example.thiago.findjob.fragments.MeusProcessoFragment;

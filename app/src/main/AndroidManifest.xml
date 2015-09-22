@@ -8,11 +8,14 @@
         android:label="@string/app_name"
         android:theme="@style/CustomTheme" >
         <activity
-            android:name=".Principal"
-            android:label="@string/app_name">
+            android:name=".activitys.Principal"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".activitys.SplashScreen"
+            android:label="@string/title_activity_splash_screen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
