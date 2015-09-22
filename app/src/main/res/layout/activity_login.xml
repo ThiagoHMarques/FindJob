@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.thiago.findjob.activitys.Login">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/etUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/etusuario"
+            android:padding="10dp"
+            android:hint="@string/lg_et_usuario"
+            android:textColorHint="#cccccc"/>
+        <EditText
+            android:id="@+id/etSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/etsenha"
+            android:layout_marginTop="-2dp"
+            android:padding="10dp"
+            android:hint="@string/lg_et_senha"
+            android:textColorHint="#cccccc"
+            android:password="true"/>
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="4dp"
+            android:text="Entrar"
+            style="@style/DefaultButtonText"
+            android:background="@drawable/button_default"
+            android:onClick="onClickBtnEntrar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Não é cadastrado? Clique aqui e cadastre-se!"
+            android:id="@+id/tvCadastrar"
+            android:layout_gravity="center"
+            android:textColor="#ff000000"
+            android:paddingTop="10dp"
+            android:onClick="onClickTvCadastrar" />
+
+    </LinearLayout>
+
+</LinearLayout>
