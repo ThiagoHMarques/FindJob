@@ -12,7 +12,7 @@ import com.example.thiago.findjob.R;
 
 public class SplashScreen extends ActionBarActivity{
 
-    public static final int segundos=5;
+    public static final int segundos=2;
     public static final int milisegundos=segundos*1000;
     public static final int delay=2;
     private ProgressBar progressBar;

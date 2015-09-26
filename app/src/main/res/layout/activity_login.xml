@@ -10,8 +10,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
-
+        android:layout_gravity="center_vertical"
+        android:weightSum="1">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_login"
+            android:paddingBottom="40dp"
+            android:src="@drawable/login"
+            android:layout_gravity="center" />
         <EditText
             android:id="@+id/etUsuario"
             android:layout_width="match_parent"
@@ -44,12 +51,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Não é cadastrado? Clique aqui e cadastre-se!"
+            android:text="@string/lg_et_cadastrar"
             android:id="@+id/tvCadastrar"
             android:layout_gravity="center"
             android:textColor="#ff000000"
             android:paddingTop="10dp"
             android:onClick="onClickTvCadastrar" />
+
+
 
     </LinearLayout>
 

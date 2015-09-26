@@ -61,7 +61,7 @@ public class Principal extends ActionBarActivity {
         headerNavigationLeft = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withCompactStyle(false)
-                .withHeaderBackground(R.drawable.android)
+                .withHeaderBackground(R.drawable.account_header)
                 .withSavedInstance(savedInstanceState)
                 .addProfiles(
                         new ProfileDrawerItem().withName("Thiago Marques").withEmail("thiagohsmarques@gmail.com")
