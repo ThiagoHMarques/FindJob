@@ -25,8 +25,8 @@ public class Login extends ActionBarActivity {
     }
 
     public void onClickTvCadastrar(View v){
-        Toast toast = Toast.makeText(Login.this, "Cadastrar",Toast.LENGTH_LONG);
-        toast.show();
+        intent = new Intent(Login.this,Cadastrar.class);
+        startActivity(intent);
     }
 
 }

@@ -1,39 +1,33 @@
 package com.example.thiago.findjob.activitys;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.adapters.TabsAdapter;
+import com.example.thiago.findjob.extras.SlidingTabLayout;
 
 public class Cadastrar extends ActionBarActivity {
+    private SlidingTabLayout mSlidingTabLayout;
+    private ViewPager mViewPager;
+    private Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
-    }
+        mToolBar = (Toolbar)findViewById(R.id.tb_main);
+        mToolBar.setTitle("Cadastrar");
+        //TABS
+        mViewPager = (ViewPager)findViewById(R.id.vp_tabs);
+        mViewPager.setAdapter(new TabsAdapter(getSupportFragmentManager(),this));
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cadastrar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        mSlidingTabLayout = (SlidingTabLayout)findViewById(R.id.stl_tabs);
+        mSlidingTabLayout.setBackgroundColor(getResources().getColor( R.color.colorPrimary ));
+        mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.accent));
+        mSlidingTabLayout.setDistributeEvenly(true);
+        mSlidingTabLayout.setViewPager(mViewPager);
     }
 }
