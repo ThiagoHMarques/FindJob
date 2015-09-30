@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.thiago.findjob.R;
+
 import com.example.thiago.findjob.extras.CustomJsonObjectRequest;
 
 import org.json.JSONObject;
