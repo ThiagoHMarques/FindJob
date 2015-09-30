@@ -27,7 +27,6 @@ public class TabsAdapter extends FragmentPagerAdapter{
         Fragment frag = null;
 
         if(position == 0){
-
             frag = new CadAlunoFragment();
 
         }if(position == 1){
