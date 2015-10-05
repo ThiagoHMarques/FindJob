@@ -1,0 +1,104 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="7dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginRight="6dp"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="4dp"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvcargo"
+            android:textSize="20sp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/md_black_1000"
+            android:layout_width="match_parent"
+            android:text="Cargo"
+            android:layout_height="wrap_content"
+            android:background="@color/md_green_100" />
+
+        <TextView
+            android:id="@+id/tvremunicacao"
+            android:text="Remuneração"
+            android:paddingTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lb_remuneracao"
+            android:layout_toEndOf="@+id/lb_remuneracao"
+            android:layout_below="@+id/tvcargo"
+            android:layout_above="@+id/lb_descricao" />
+        <TextView
+            android:textSize="14sp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/tvdesc"
+            android:text="DESCRIÇÃO DESCRIÇÃO DESCRIÇÃO DESCRIÇÃO DESCRIÇÃO DESCRIÇÃO DESCRIÇÃO "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lb_descricao"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver detalhes"
+            android:padding="8dp"
+            android:id="@+id/button"
+            style="@style/ButtonTextCadView"
+            android:background="@drawable/button_default"
+            android:layout_below="@+id/tvdesc"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ButtonTextCadView"
+            android:background="@drawable/button_default"
+            android:text="Fechar Vaga"
+            android:padding="8dp"
+            android:id="@+id/button2"
+            android:layout_below="@+id/tvdesc"
+            android:layout_toRightOf="@+id/button"
+            android:layout_toEndOf="@+id/button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/md_black_1000"
+            android:text="Remuneração:"
+            android:id="@+id/lb_remuneracao"
+            android:layout_below="@+id/tvcargo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descrição:"
+            android:paddingLeft="10dp"
+            android:textColor="@color/md_black_1000"
+            android:paddingRight="10dp"
+            android:id="@+id/lb_descricao"
+            android:layout_below="@+id/lb_remuneracao"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
