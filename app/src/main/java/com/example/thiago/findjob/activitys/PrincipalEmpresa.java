@@ -2,19 +2,22 @@ package com.example.thiago.findjob.activitys;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.fragments.AlunosFragment;
 import com.example.thiago.findjob.fragments.DadosAlunoFragment;
+import com.example.thiago.findjob.fragments.DadosEmpresaFragment;
 import com.example.thiago.findjob.fragments.EmpresasFragment;
 import com.example.thiago.findjob.fragments.MeusProcessoFragment;
+import com.example.thiago.findjob.fragments.MinhasVagasFragment;
 import com.example.thiago.findjob.fragments.VagasFragment;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -26,8 +29,7 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-
-public class Principal extends ActionBarActivity {
+public class PrincipalEmpresa extends AppCompatActivity {
     private Drawer navigationDrawerLeft;
     private AccountHeader headerNavigationLeft;
     private Toolbar mToolBar;
@@ -36,24 +38,24 @@ public class Principal extends ActionBarActivity {
     private OnCheckedChangeListener mOnCheckedChangeListener = new OnCheckedChangeListener(){
         @Override
         public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
-            Toast.makeText(Principal.this,"onCheckedChanged"+(b ? "true" : "false"),Toast.LENGTH_SHORT).show();
+            Toast.makeText(PrincipalEmpresa.this, "onCheckedChanged" + (b ? "true" : "false"), Toast.LENGTH_SHORT).show();
         }
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.activity_principal_empresa);
 
         if(savedInstanceState == null){
-            VagasFragment vagasFragment = new VagasFragment();
+            AlunosFragment alunosFragment = new AlunosFragment();
             FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.content, vagasFragment, "vagasFragment");
+            ft.replace(R.id.content, alunosFragment, "alunosFragment");
             ft.commit();
         }
 
 
-        mToolBar = (Toolbar)findViewById(R.id.tb_main);
+        mToolBar = (Toolbar)findViewById(R.id.tb_main_empresa);
         mToolBar.setTitle("Find Job");
         mToolBar.setSubtitle("Just a subtitle");
         setSupportActionBar(mToolBar);
@@ -64,7 +66,7 @@ public class Principal extends ActionBarActivity {
                 .withHeaderBackground(R.drawable.account_header)
                 .withSavedInstance(savedInstanceState)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Thiago Marques").withEmail("thiagohsmarques@gmail.com")
+                        new ProfileDrawerItem().withName("Thiago Marques Empresa").withEmail("thiagohsmarques@gmail.com")
                 )
                 .build();
 
@@ -77,9 +79,8 @@ public class Principal extends ActionBarActivity {
                 .withAccountHeader(headerNavigationLeft)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Inicio"),
-                        new SecondaryDrawerItem().withName("Empresas").withIcon(getResources().getDrawable(R.drawable.briefcase)),
-                        new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account)),
-                        new SecondaryDrawerItem().withName("Meus Processos").withIcon(getResources().getDrawable(R.drawable.eye))
+                        new SecondaryDrawerItem().withName("Minhas vagas").withIcon(getResources().getDrawable(R.drawable.briefcase)),
+                        new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account))
                 )
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(0)
@@ -87,33 +88,27 @@ public class Principal extends ActionBarActivity {
                     @Override
                     public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
                         if (i == 1) {
-                            VagasFragment vagasFragment = new VagasFragment();
+                            AlunosFragment alunosFragment = new AlunosFragment();
                             FragmentTransaction ft = fm.beginTransaction();
-                            ft.replace(R.id.content, vagasFragment, "vagasFragment");
+                            ft.replace(R.id.content, alunosFragment, "alunosFragment");
                             ft.commit();
                         }
                         if (i == 2) {
-                            EmpresasFragment empresasFragment = new EmpresasFragment();
+                            MinhasVagasFragment minhasVagasFragment = new MinhasVagasFragment();
                             FragmentTransaction ft = fm.beginTransaction();
-                            ft.replace(R.id.content, empresasFragment, "empresasFragment");
+                            ft.replace(R.id.content, minhasVagasFragment, "minhasVagasFragment");
                             ft.commit();
                         }
                         if (i == 3) {
-                            DadosAlunoFragment dadosAlunoFragment = new DadosAlunoFragment();
+                            DadosEmpresaFragment dadosEmpresaFragment = new DadosEmpresaFragment();
                             FragmentTransaction ft = fm.beginTransaction();
-                            ft.replace(R.id.content, dadosAlunoFragment, "dadosAlunoFragment");
-                            ft.commit();
-                        }
-                        if (i == 4) {
-                            MeusProcessoFragment meusProcessoFragment = new MeusProcessoFragment();
-                            FragmentTransaction ft = fm.beginTransaction();
-                            ft.replace(R.id.content, meusProcessoFragment,"meusProcessoFragment");
+                            ft.replace(R.id.content, dadosEmpresaFragment, "dadosEmpresaFragment");
                             ft.commit();
                         }
 
-                    return false;
-                }
-    })
+                        return false;
+                    }
+                })
                 .build();
 
     }
@@ -121,7 +116,7 @@ public class Principal extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        getMenuInflater().inflate(R.menu.menu_principal_empresa, menu);
         return true;
     }
 
@@ -133,11 +128,10 @@ public class Principal extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
+        if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 }
