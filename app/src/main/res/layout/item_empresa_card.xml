@@ -1,0 +1,103 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="7dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginRight="6dp"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="4dp"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvnome"
+            android:textSize="20sp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/md_black_1000"
+            android:layout_width="match_parent"
+            android:text="Nome"
+            android:layout_height="wrap_content"
+            android:background="@color/md_green_100" />
+
+        <TextView
+            android:id="@+id/tvemail"
+            android:text="Email"
+            android:paddingTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lb_email"
+            android:layout_toEndOf="@+id/lb_email"
+            android:layout_below="@+id/tvnome" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/md_black_1000"
+            android:text="Email:"
+            android:id="@+id/lb_email"
+            android:layout_below="@+id/tvnome"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+        android:id="@+id/tvtelefone"
+        android:text="Teleefone"
+        android:paddingTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvemail"
+        android:layout_toRightOf="@+id/lb_telefone"
+        android:layout_toEndOf="@+id/lb_telefone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/md_black_1000"
+            android:text="Telefone:"
+            android:id="@+id/lb_telefone"
+            android:layout_below="@+id/tvemail"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/tvsegmento"
+            android:text="segmento"
+            android:paddingTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvtelefone"
+            android:layout_toRightOf="@+id/lb_segmento"
+            android:layout_toEndOf="@+id/lb_segmento" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/md_black_1000"
+            android:text="Segmento:"
+            android:id="@+id/lb_segmento"
+            android:layout_below="@+id/tvtelefone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingBottom="10dp"/>
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

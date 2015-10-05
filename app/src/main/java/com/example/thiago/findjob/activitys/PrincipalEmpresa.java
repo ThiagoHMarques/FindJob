@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.thiago.findjob.R;
 import com.example.thiago.findjob.fragments.AlunosFragment;
+import com.example.thiago.findjob.fragments.CadastrarVagasFragment;
 import com.example.thiago.findjob.fragments.DadosAlunoFragment;
 import com.example.thiago.findjob.fragments.DadosEmpresaFragment;
 import com.example.thiago.findjob.fragments.EmpresasFragment;
@@ -79,8 +80,9 @@ public class PrincipalEmpresa extends AppCompatActivity {
                 .withAccountHeader(headerNavigationLeft)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Inicio"),
-                        new SecondaryDrawerItem().withName("Minhas vagas").withIcon(getResources().getDrawable(R.drawable.briefcase)),
-                        new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account))
+                        new SecondaryDrawerItem().withName("Minhas vagas").withIcon(getResources().getDrawable(R.drawable.tooltip)),
+                        new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account)),
+                        new SecondaryDrawerItem().withName("Cadastrar vaga").withIcon(getResources().getDrawable(R.drawable.tooltipoutlineplus))
                 )
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(0)
@@ -103,6 +105,12 @@ public class PrincipalEmpresa extends AppCompatActivity {
                             DadosEmpresaFragment dadosEmpresaFragment = new DadosEmpresaFragment();
                             FragmentTransaction ft = fm.beginTransaction();
                             ft.replace(R.id.content, dadosEmpresaFragment, "dadosEmpresaFragment");
+                            ft.commit();
+                        }
+                        if (i == 4) {
+                            CadastrarVagasFragment cadastrarVagasFragment = new CadastrarVagasFragment();
+                            FragmentTransaction ft = fm.beginTransaction();
+                            ft.replace(R.id.content, cadastrarVagasFragment, "cadastrarVagasFragment");
                             ft.commit();
                         }
 
