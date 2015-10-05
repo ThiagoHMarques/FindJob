@@ -20,4 +20,5 @@
     <string name="et_segmento">Segmento</string>
     <string name="cadEmpresa_nome">Nome</string>
     <string name="et_cargo">Cargo Pretendido</string>
+    <string name="title_activity_principal_empresa">PrincipalEmpresa</string>
 </resources>

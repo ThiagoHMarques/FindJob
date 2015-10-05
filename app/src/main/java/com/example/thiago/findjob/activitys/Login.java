@@ -23,9 +23,9 @@ import java.util.Map;
 
 public class Login extends ActionBarActivity {
     private Intent intent;
-    private RequestQueue rq;
+    /*private RequestQueue rq;
     private Map<String,String> params;
-    private String url = "www.google.com.br";
+    private String url = "www.google.com.br";*/
     private EditText et_usuario,et_senha;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +35,15 @@ public class Login extends ActionBarActivity {
         et_usuario = (EditText) findViewById(R.id.etUsuario);
         et_senha = (EditText) findViewById(R.id.etSenha);
 
-        params = new HashMap<String,String>();
+        /*params = new HashMap<String,String>();
         params.put("Usuario",et_usuario.getText().toString());
-        params.put("Senha",et_senha.getText().toString());
+        params.put("Senha",et_senha.getText().toString());*/
 
-        rq = Volley.newRequestQueue(Login.this);
+        //rq = Volley.newRequestQueue(Login.this);
     }
 
     public void onClickBtnEntrar(View v){
-        CustomJsonObjectRequest jor = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+        /*CustomJsonObjectRequest jor = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
 
@@ -56,9 +56,9 @@ public class Login extends ActionBarActivity {
             }
         });
         jor.setTag("tag");
-        rq.add(jor);
+        rq.add(jor);*/
 
-        intent = new Intent(Login.this,Principal.class);
+        intent = new Intent(Login.this,PrincipalEmpresa.class);
         startActivity(intent);
         finish();
     }
@@ -68,10 +68,10 @@ public class Login extends ActionBarActivity {
         startActivity(intent);
     }
 
-    @Override
+    /*@Override
     public void onStop(){
         super.onStop();
         rq.cancelAll("tag");
-    }
+    }*/
 
 }
