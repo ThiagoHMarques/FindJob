@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.extras.SessionManager;
 
 public class SplashScreen extends ActionBarActivity{
 
@@ -16,6 +17,8 @@ public class SplashScreen extends ActionBarActivity{
     public static final int milisegundos=segundos*1000;
     public static final int delay=2;
     private ProgressBar progressBar;
+    private SessionManager sessionManager;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +40,23 @@ public class SplashScreen extends ActionBarActivity{
 
             @Override
             public void onFinish() {
-                Intent intent = new Intent(SplashScreen.this,Login.class);
-                startActivity(intent);
-                finish();
+                sessionManager = new SessionManager(SplashScreen.this);
+                if(sessionManager.isLoggedIn()) {
+                    if (sessionManager.getUserType().equals("aluno")) {
+                        intent = new Intent(SplashScreen.this, PrincipalAluno.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        intent = new Intent(SplashScreen.this, PrincipalEmpresa.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }else{
+                    intent = new Intent(SplashScreen.this,Login.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         }.start();
     }

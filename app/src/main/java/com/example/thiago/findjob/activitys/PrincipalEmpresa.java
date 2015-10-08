@@ -1,10 +1,12 @@
 package com.example.thiago.findjob.activitys;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.extras.SessionManager;
 import com.example.thiago.findjob.fragments.AlunosFragment;
 import com.example.thiago.findjob.fragments.CadastrarVagasFragment;
 import com.example.thiago.findjob.fragments.DadosAlunoFragment;
@@ -35,6 +38,8 @@ public class PrincipalEmpresa extends AppCompatActivity {
     private AccountHeader headerNavigationLeft;
     private Toolbar mToolBar;
     private FragmentManager fm = getSupportFragmentManager();
+    private SessionManager sessionManager;
+    private Intent intent;
 
     private OnCheckedChangeListener mOnCheckedChangeListener = new OnCheckedChangeListener(){
         @Override
@@ -47,7 +52,7 @@ public class PrincipalEmpresa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_empresa);
-
+        sessionManager = new SessionManager(PrincipalEmpresa.this);
         if(savedInstanceState == null){
             AlunosFragment alunosFragment = new AlunosFragment();
             FragmentTransaction ft = fm.beginTransaction();
@@ -82,7 +87,8 @@ public class PrincipalEmpresa extends AppCompatActivity {
                         new PrimaryDrawerItem().withName("Inicio"),
                         new SecondaryDrawerItem().withName("Minhas vagas").withIcon(getResources().getDrawable(R.drawable.tooltip)),
                         new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account)),
-                        new SecondaryDrawerItem().withName("Cadastrar vaga").withIcon(getResources().getDrawable(R.drawable.tooltipoutlineplus))
+                        new SecondaryDrawerItem().withName("Cadastrar vaga").withIcon(getResources().getDrawable(R.drawable.tooltipoutlineplus)),
+                        new SecondaryDrawerItem().withName("Logout")
                 )
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(0)
@@ -113,6 +119,13 @@ public class PrincipalEmpresa extends AppCompatActivity {
                             ft.replace(R.id.content, cadastrarVagasFragment, "cadastrarVagasFragment");
                             ft.commit();
                         }
+                        if (i == 5) {
+                            sessionManager.logout();
+                            intent = new Intent(PrincipalEmpresa.this,Login.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
 
                         return false;
                     }

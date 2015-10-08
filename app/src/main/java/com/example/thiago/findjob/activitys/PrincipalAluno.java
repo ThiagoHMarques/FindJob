@@ -1,5 +1,7 @@
 package com.example.thiago.findjob.activitys;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.extras.SessionManager;
 import com.example.thiago.findjob.fragments.DadosAlunoFragment;
 import com.example.thiago.findjob.fragments.EmpresasFragment;
 import com.example.thiago.findjob.fragments.MeusProcessoFragment;
@@ -32,6 +35,8 @@ public class PrincipalAluno extends ActionBarActivity {
     private AccountHeader headerNavigationLeft;
     private Toolbar mToolBar;
     private FragmentManager fm = getSupportFragmentManager();
+    private SessionManager sessionManager;
+    private Intent intent;
 
     private OnCheckedChangeListener mOnCheckedChangeListener = new OnCheckedChangeListener(){
         @Override
@@ -44,7 +49,7 @@ public class PrincipalAluno extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_aluno);
-
+        sessionManager = new SessionManager(PrincipalAluno.this);
         if(savedInstanceState == null){
             VagasFragment vagasFragment = new VagasFragment();
             FragmentTransaction ft = fm.beginTransaction();
@@ -79,7 +84,8 @@ public class PrincipalAluno extends ActionBarActivity {
                         new PrimaryDrawerItem().withName("Inicio"),
                         new SecondaryDrawerItem().withName("Empresas").withIcon(getResources().getDrawable(R.drawable.briefcase)),
                         new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account)),
-                        new SecondaryDrawerItem().withName("Meus Processos").withIcon(getResources().getDrawable(R.drawable.eye))
+                        new SecondaryDrawerItem().withName("Meus Processos").withIcon(getResources().getDrawable(R.drawable.eye)),
+                        new SecondaryDrawerItem().withName("Logout")
                 )
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(0)
@@ -109,6 +115,12 @@ public class PrincipalAluno extends ActionBarActivity {
                             FragmentTransaction ft = fm.beginTransaction();
                             ft.replace(R.id.content, meusProcessoFragment,"meusProcessoFragment");
                             ft.commit();
+                        }
+                        if (i == 5) {
+                            sessionManager.logout();
+                            intent = new Intent(PrincipalAluno.this,Login.class);
+                            startActivity(intent);
+                            finish();
                         }
 
                     return false;

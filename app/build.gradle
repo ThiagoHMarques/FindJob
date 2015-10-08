@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile('com.mikepenz:materialdrawer:4.1.0@aar') {
         transitive = true
     }
@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.mcxiaoke.volley:library:1.0.10@aar'
+    compile files('libs/gson-2.4.jar')
 }

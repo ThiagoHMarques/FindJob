@@ -9,7 +9,16 @@ public class Empresa extends Pessoa {
     private int idEmpresa;
     private String cnpj;
     private String segmento;
+    private String razaoSocial;
     private ArrayList<Vaga> vagas;
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
 
     public int getIdEmpresa() {
         return idEmpresa;

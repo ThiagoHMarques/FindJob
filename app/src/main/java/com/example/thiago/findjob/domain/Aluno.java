@@ -8,6 +8,25 @@ import java.util.ArrayList;
 public class Aluno extends Pessoa {
     private int idAluno;
     private Cargo cargo;
+    private String profissao;
+    private String escolaridade;
+
+    public String getEscolaridade() {
+        return escolaridade;
+    }
+
+    public void setEscolaridade(String escolaridade) {
+        this.escolaridade = escolaridade;
+    }
+
+    public String getProfissao() {
+        return profissao;
+    }
+
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
+    }
+
     private String Curso;
     private int idade;
     private String curriculo;
