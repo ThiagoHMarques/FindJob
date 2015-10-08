@@ -14,11 +14,13 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.domain.Aluno;
 import com.example.thiago.findjob.extras.SessionManager;
 import com.example.thiago.findjob.fragments.DadosAlunoFragment;
 import com.example.thiago.findjob.fragments.EmpresasFragment;
 import com.example.thiago.findjob.fragments.MeusProcessoFragment;
 import com.example.thiago.findjob.fragments.VagasFragment;
+import com.google.gson.Gson;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -37,6 +39,7 @@ public class PrincipalAluno extends ActionBarActivity {
     private FragmentManager fm = getSupportFragmentManager();
     private SessionManager sessionManager;
     private Intent intent;
+    private Aluno alunoLogado;
 
     private OnCheckedChangeListener mOnCheckedChangeListener = new OnCheckedChangeListener(){
         @Override
@@ -49,7 +52,11 @@ public class PrincipalAluno extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_aluno);
+        alunoLogado = new Aluno();
         sessionManager = new SessionManager(PrincipalAluno.this);
+        Gson gson = new Gson();
+        String json = sessionManager.getUser();
+        alunoLogado = gson.fromJson(json,Aluno.class);
         if(savedInstanceState == null){
             VagasFragment vagasFragment = new VagasFragment();
             FragmentTransaction ft = fm.beginTransaction();
@@ -69,7 +76,7 @@ public class PrincipalAluno extends ActionBarActivity {
                 .withHeaderBackground(R.drawable.account_header)
                 .withSavedInstance(savedInstanceState)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Thiago Marques Aluno").withEmail("thiagohsmarques@gmail.com")
+                        new ProfileDrawerItem().withName(alunoLogado.getNome().toString()).withEmail(alunoLogado.getEmail().toString())
                 )
                 .build();
 

@@ -12,8 +12,10 @@ import android.widget.LinearLayout;
 
 import com.example.thiago.findjob.R;
 import com.example.thiago.findjob.adapters.VagaAdapter;
+import com.example.thiago.findjob.domain.Vaga;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -21,7 +23,7 @@ import java.util.List;
  */
 public class VagasFragment extends Fragment {
     private RecyclerView mRecyclerView;
-
+    private List<Vaga> vagas;
     public VagasFragment() {
         // Required empty public constructor
     }

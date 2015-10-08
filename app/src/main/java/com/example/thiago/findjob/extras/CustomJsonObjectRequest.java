@@ -24,7 +24,7 @@ public class CustomJsonObjectRequest extends Request<JSONObject> {
     private Response.Listener<JSONObject> response;
     private Map<String, String> params;
 
-    public CustomJsonObjectRequest(int method, String url,Map<String,String> params,Response.Listener<JSONObject> response, Response.ErrorListener listener) {
+    public CustomJsonObjectRequest(int method, String url,Map<String, String> params,Response.Listener<JSONObject> response, Response.ErrorListener listener) {
         super(method, url, listener);
         this.params = params;
         this.response = response;

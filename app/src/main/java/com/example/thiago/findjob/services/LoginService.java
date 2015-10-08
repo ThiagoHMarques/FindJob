@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.example.thiago.findjob.activitys.Login;
 import com.example.thiago.findjob.activitys.PrincipalAluno;
 import com.example.thiago.findjob.activitys.PrincipalEmpresa;
 import com.example.thiago.findjob.domain.Aluno;
@@ -89,7 +88,6 @@ public class LoginService {
                             sessionManager.getContext().startActivity(intent);
                         }
                     }
-                    Login.fa.finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
