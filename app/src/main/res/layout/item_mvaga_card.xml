@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:text="Ver detalhes"
             android:padding="8dp"
-            android:id="@+id/button"
+            android:id="@+id/bt_mv_detalhes"
             style="@style/ButtonTextCadView"
             android:background="@drawable/button_default"
             android:layout_below="@+id/tvdesc"
@@ -71,7 +71,7 @@
             android:background="@drawable/button_default"
             android:text="Fechar Vaga"
             android:padding="8dp"
-            android:id="@+id/button2"
+            android:id="@+id/bt_fechar_vaga"
             android:layout_below="@+id/tvdesc"
             android:layout_toRightOf="@+id/button"
             android:layout_toEndOf="@+id/button" />

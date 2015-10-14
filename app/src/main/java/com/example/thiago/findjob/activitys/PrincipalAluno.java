@@ -52,6 +52,11 @@ public class PrincipalAluno extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal_aluno);
+
+        if(Login.fa != null){
+            Login.fa.finish();
+        }
+
         alunoLogado = new Aluno();
         sessionManager = new SessionManager(PrincipalAluno.this);
         Gson gson = new Gson();

@@ -49,9 +49,6 @@ public class Login extends ActionBarActivity {
         et_senha = (EditText) findViewById(R.id.etSenha);
         params = new HashMap<String, String>();
 
-
-
-
     }
 
     public void onClickBtnEntrar(View v) throws InterruptedException {
@@ -65,4 +62,6 @@ public class Login extends ActionBarActivity {
         intent = new Intent(Login.this,Cadastrar.class);
         startActivity(intent);
     }
+
+
 }

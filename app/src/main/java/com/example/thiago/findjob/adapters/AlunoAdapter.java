@@ -21,30 +21,29 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.MyViewHolder
     private List<Aluno> mList;
     private LayoutInflater mLayoutInflater;
 
-    public AlunoAdapter(Context c) {
+    public AlunoAdapter(Context c,List<Aluno> mList) {
         mLayoutInflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mList = mList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = mLayoutInflater.inflate(R.layout.item_aluno_card, parent,false);
         MyViewHolder mvh = new MyViewHolder(v);
-
-
         return mvh;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tvnome.setText("Thiago Henrique Silva Marques");
-        holder.tvcurso.setText("Analise e desenvolvimento de sistemas");
-        holder.tvemail.setText("thiagohsmarques@gmail.com");
-        holder.tvtelefone.setText("(34)9196-3161");
+        holder.tvnome.setText(mList.get(position).getNome().toString());
+        holder.tvcurso.setText(mList.get(position).getEscolaridade().toString());
+        holder.tvemail.setText(mList.get(position).getEmail().toString());
+        holder.tvtelefone.setText(mList.get(position).getTelefone().toString());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

@@ -1,122 +1,130 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MeusContatos" >
+    android:layout_height="match_parent">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MeusContatos" >
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <TableLayout
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:stretchColumns="1">
+            android:layout_height="fill_parent">
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:stretchColumns="1">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/et_nomeLayout"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:id="@+id/et_nome"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/et_nomeLayout"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/cadEmpresa_nome"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/et_emailLayout"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_nomeLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
+                <EditText
+                    android:id="@+id/et_empresa_nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/cadEmpresa_nome"
+                    android:enabled="true" />
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/et_email"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/et_emailLayout"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/et_email"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_below="@+id/et_nomeLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/et_empresa_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/et_email"
+                    android:enabled="true" />
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/et_telefoneLayout"
-            android:layout_width="match_parent"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_emailLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:id="@+id/et_telefone"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/et_telefoneLayout"
                 android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/et_telefone"
-                android:inputType="phone"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/et_segmentoLayout"
-            android:layout_width="match_parent"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_telefoneLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
+                android:layout_below="@+id/et_emailLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
 
-            <EditText
-                android:id="@+id/et_segmento"
+                <EditText
+                    android:id="@+id/et_empresa_telefone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/et_telefone"
+                    android:inputType="phone"
+                    android:enabled="true" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/et_segmentoLayout"
                 android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/et_segmento"/>
-        </android.support.design.widget.TextInputLayout>
-        </TableLayout>
-    </ScrollView>
+                android:layout_below="@+id/et_telefoneLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
 
-    <Button
-        android:id="@+id/salvar"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        style="@style/DefaultButtonText"
-        android:background="@drawable/button_default"
-        android:text="Salvar"
-        android:visibility="invisible" />
-    <Button
-        android:id="@+id/cancelar"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        style="@style/DefaultButtonText"
-        android:background="@drawable/button_default"
-        android:text="Cancelar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:visibility="invisible" />
+                <EditText
+                    android:id="@+id/et_empresa_segmento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/et_segmento"
+                    android:enabled="true" />
+            </android.support.design.widget.TextInputLayout>
+            </TableLayout>
+        </ScrollView>
 
+        <Button
+            android:id="@+id/empresa_salvar"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            style="@style/DefaultButtonText"
+            android:background="@drawable/button_default"
+            android:text="Salvar"
+            android:visibility="invisible" />
+        <Button
+            android:id="@+id/empresa_cancelar"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            style="@style/DefaultButtonText"
+            android:background="@drawable/button_default"
+            android:text="Cancelar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible" />
+    </RelativeLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:layout_column="20"
-        android:layout_above="@+id/cancelar"
         android:src="@drawable/pen"
-        android:layout_alignRight="@+id/cancelar"
-        android:layout_alignEnd="@+id/cancelar" />
-
-</RelativeLayout>
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"/>
+</android.support.design.widget.CoordinatorLayout>

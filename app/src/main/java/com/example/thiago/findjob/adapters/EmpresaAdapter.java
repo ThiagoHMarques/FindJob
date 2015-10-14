@@ -21,8 +21,9 @@ public class EmpresaAdapter extends RecyclerView.Adapter<EmpresaAdapter.MyViewHo
     private List<Empresa> mList;
     private LayoutInflater mLayoutInflater;
 
-    public EmpresaAdapter(Context c) {
+    public EmpresaAdapter(Context c,List<Empresa> mList) {
         mLayoutInflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mList = mList;
     }
 
     @Override
@@ -36,15 +37,15 @@ public class EmpresaAdapter extends RecyclerView.Adapter<EmpresaAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tvnome.setText("Algar Telecom");
-        holder.tvsegmento.setText("Tecnologia");
-        holder.tvemail.setText("algar@algar.com");
-        holder.tvtelefone.setText("(34)3336-3521");
+        holder.tvnome.setText(mList.get(position).getNome().toString());
+        holder.tvsegmento.setText(mList.get(position).getSegmento().toString());
+        holder.tvemail.setText(mList.get(position).getEmail().toString());
+        holder.tvtelefone.setText(mList.get(position).getTelefone().toString());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

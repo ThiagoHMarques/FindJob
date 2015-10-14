@@ -2,10 +2,14 @@ package com.example.thiago.findjob.fragments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.thiago.findjob.R;
 
@@ -14,7 +18,10 @@ import com.example.thiago.findjob.R;
  * A simple {@link Fragment} subclass.
  */
 public class DadosAlunoFragment extends Fragment {
-
+    private FloatingActionButton bt_editar;
+    private Button bt_salvar,bt_cancelar;
+    private TextView tv_nome,tv_email,tv_idade,tv_telefone,tv_faculdade,tv_senha,tv_confsenha;
+    private TextInputLayout til_senha,til_confsenha;
 
     public DadosAlunoFragment() {
         // Required empty public constructor
@@ -25,8 +32,88 @@ public class DadosAlunoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dados_aluno, container, false);
+        View view = inflater.inflate(R.layout.fragment_dados_aluno, container, false);
+
+        bt_editar = (FloatingActionButton) view.findViewById(R.id.fab_edit);
+        tv_nome = (TextView) view.findViewById(R.id.et_aluno_nome);
+        tv_email = (TextView) view.findViewById(R.id.et_aluno_email);
+        tv_idade = (TextView) view.findViewById(R.id.et_aluno_idade);
+        tv_senha = (TextView) view.findViewById(R.id.et_aluno_senha);
+        tv_confsenha = (TextView) view.findViewById(R.id.et_aluno_confsenha);
+        tv_faculdade = (TextView) view.findViewById(R.id.et_aluno_faculdade);
+        tv_telefone = (TextView) view.findViewById(R.id.et_aluno_telefone);
+        til_senha = (TextInputLayout) view.findViewById(R.id.et_senhaLayout);
+        til_confsenha = (TextInputLayout) view.findViewById(R.id.et_confsenhaLayout);
+        bt_salvar = (Button) view.findViewById(R.id.aluno_salvar);
+        bt_cancelar = (Button) view.findViewById(R.id.aluno_cancelar);
+
+
+
+        create();
+
+
+        bt_editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv_nome.setEnabled(true);
+                tv_email.setEnabled(true);
+                tv_telefone.setEnabled(true);
+                tv_idade.setEnabled(true);
+                tv_senha.setVisibility(View.VISIBLE);
+                tv_confsenha.setVisibility(View.VISIBLE);
+                tv_senha.setEnabled(true);
+                tv_confsenha.setEnabled(true);
+                tv_telefone.setEnabled(true);
+                tv_faculdade.setEnabled(true);
+                til_confsenha.setVisibility(View.VISIBLE);
+                til_senha.setVisibility(View.VISIBLE);
+                bt_salvar.setVisibility(View.VISIBLE);
+                bt_cancelar.setVisibility(View.VISIBLE);
+                bt_editar.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        bt_salvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        bt_cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                create();
+            }
+        });
+
+        return view;
     }
 
+    public void create(){
+        tv_nome.setText("Nome");
+        tv_email.setText("Email");
+        tv_telefone.setText("Telefone");
+        tv_idade.setText("Idade");
+        tv_senha.setText("Senha");
+        tv_confsenha.setText("ConfSenha");
+        tv_telefone.setText("Telefone");
+        tv_faculdade.setText("Faculdade");
+
+
+        tv_nome.setEnabled(false);
+        tv_email.setEnabled(false);
+        tv_telefone.setEnabled(false);
+        tv_idade.setEnabled(false);
+        tv_senha.setVisibility(View.INVISIBLE);
+        tv_confsenha.setVisibility(View.INVISIBLE);
+        tv_telefone.setEnabled(false);
+        tv_faculdade.setEnabled(false);
+        til_confsenha.setVisibility(View.INVISIBLE);
+        til_senha.setVisibility(View.INVISIBLE);
+        bt_salvar.setVisibility(View.INVISIBLE);
+        bt_cancelar.setVisibility(View.INVISIBLE);
+        bt_editar.setVisibility(View.VISIBLE);
+    }
 
 }

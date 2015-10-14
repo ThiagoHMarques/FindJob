@@ -12,7 +12,12 @@ import android.widget.LinearLayout;
 
 import com.example.thiago.findjob.R;
 import com.example.thiago.findjob.adapters.VagaAdapter;
+import com.example.thiago.findjob.domain.Aluno;
 import com.example.thiago.findjob.domain.Vaga;
+import com.example.thiago.findjob.extras.AppController;
+import com.example.thiago.findjob.extras.SessionManager;
+import com.example.thiago.findjob.services.VagaService;
+import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +29,9 @@ import java.util.Map;
 public class VagasFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private List<Vaga> vagas;
+    private VagaService vagaService;
+    private SessionManager sessionManager;
+
     public VagasFragment() {
         // Required empty public constructor
     }
@@ -34,6 +42,13 @@ public class VagasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_vagas, container, false);
+        Aluno alunoLogado = new Aluno();
+        sessionManager = new SessionManager(getActivity());
+        Gson gson = new Gson();
+        String json = sessionManager.getUser();
+        alunoLogado = gson.fromJson(json,Aluno.class);
+
+        vagaService = new VagaService();
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView.setHasFixedSize(true);
@@ -42,10 +57,11 @@ public class VagasFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
 
+        vagaService.getVagas(alunoLogado,getActivity(),view,mRecyclerView,"listar_vagas",null);
 
-        VagaAdapter adapter = new VagaAdapter(getActivity());
-        mRecyclerView.setAdapter(adapter);
 
+        //VagaAdapter adapter = new VagaAdapter(getActivity());
+        //mRecyclerView.setAdapter(adapter);
         return view;
     }
 

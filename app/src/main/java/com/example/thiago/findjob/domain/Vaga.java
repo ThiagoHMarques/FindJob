@@ -6,12 +6,21 @@ import java.util.ArrayList;
  * Created by THIAGO on 21/09/2015.
  */
 public class Vaga {
+    private int idVaga;
     private String desc;
-    private String cargo;
+    private Cargo cargo;
     private String remuneracao;
     private String anexo;
     private Empresa empresa;
     private ArrayList<Aluno> candidatos;
+
+    public int getIdVaga() {
+        return idVaga;
+    }
+
+    public void setIdVaga(int idVaga) {
+        this.idVaga = idVaga;
+    }
 
     public Empresa getEmpresa() {
         return empresa;
@@ -37,11 +46,11 @@ public class Vaga {
         this.desc = desc;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 

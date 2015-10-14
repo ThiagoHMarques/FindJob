@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.example.thiago.findjob.R;
 import com.example.thiago.findjob.adapters.AlunoAdapter;
 import com.example.thiago.findjob.adapters.EmpresaAdapter;
+import com.example.thiago.findjob.domain.Empresa;
+import com.example.thiago.findjob.services.EmpresaService;
 
 
 /**
@@ -37,9 +39,8 @@ public class EmpresasFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
 
-
-        EmpresaAdapter adapter = new EmpresaAdapter(getActivity());
-        mRecyclerView.setAdapter(adapter);
+        EmpresaService empresaService = new EmpresaService();
+        empresaService.getEmpresas(getActivity(),mRecyclerView,view);
 
         return view;
     }

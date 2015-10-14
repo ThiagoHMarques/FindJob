@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.thiago.findjob.R;
 import com.example.thiago.findjob.domain.Vaga;
+import com.example.thiago.findjob.services.VagaService;
 
 import java.util.List;
 
@@ -19,9 +21,12 @@ public class MinhasVagasAdapter extends RecyclerView.Adapter<MinhasVagasAdapter.
 
     private List<Vaga> mList;
     private LayoutInflater mLayoutInflater;
+    private Context  context;
 
-    public MinhasVagasAdapter(Context c) {
+    public MinhasVagasAdapter(Context c,List<Vaga> mList) {
         mLayoutInflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.context =c;
+        this.mList = mList;
     }
 
     @Override
@@ -34,25 +39,44 @@ public class MinhasVagasAdapter extends RecyclerView.Adapter<MinhasVagasAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tvremuneracao.setText("1500");
-        holder.tvdesc.setText("esta e a descrição da vaga.esta e a descrição da vaga.esta e a descrição da vaga.esta e a descrição da vaga.");
-        holder.tvcargo.setText("Analista de sistemas");
+    public void onBindViewHolder(MyViewHolder holder,final int position) {
+        holder.tvremuneracao.setText(mList.get(position).getRemuneracao().toString());
+        holder.tvdesc.setText(mList.get(position).getDesc().toString());
+        holder.tvcargo.setText(mList.get(position).getCargo().getNome().toString());
+
+        holder.btfecharvagas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Vaga vaga = mList.get(position);
+                VagaService vagaService = new VagaService();
+                vagaService.fecharVaga(context, view, vaga,mList);
+            }
+        });
+
+        holder.btmdetalhes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView tvdesc,tvcargo,tvremuneracao;
+        public Button btfecharvagas,btmdetalhes;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             tvcargo = (TextView) itemView.findViewById(R.id.tvcargo);
             tvdesc = (TextView) itemView.findViewById(R.id.tvdesc);
             tvremuneracao = (TextView) itemView.findViewById(R.id.tvremunicacao);
+            btfecharvagas = (Button) itemView.findViewById(R.id.bt_fechar_vaga);
+            btmdetalhes = (Button) itemView.findViewById(R.id.bt_mv_detalhes);
         }
     }
 }

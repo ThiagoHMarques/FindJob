@@ -68,6 +68,7 @@ public class LoginService {
                         Empresa empresa = new Empresa();
                         empresa.setNome(jsonObject.getString("nome"));
                         empresa.setId(jsonObject.getInt("idpessoa"));
+                        empresa.setIdEmpresa(jsonObject.getInt("idempresa"));
                         empresa.setEmail(jsonObject.getString("email"));
                         empresa.setTelefone(jsonObject.getString("telefone"));
                         empresa.setCnpj(jsonObject.getString("cnpj"));

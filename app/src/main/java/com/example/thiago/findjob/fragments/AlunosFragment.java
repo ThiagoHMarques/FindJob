@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.example.thiago.findjob.R;
 import com.example.thiago.findjob.adapters.AlunoAdapter;
 import com.example.thiago.findjob.adapters.VagaAdapter;
+import com.example.thiago.findjob.services.AlunoService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,8 +40,8 @@ public class AlunosFragment extends Fragment {
         mRecyclerView.setLayoutManager(llm);
 
 
-        AlunoAdapter adapter = new AlunoAdapter(getActivity());
-        mRecyclerView.setAdapter(adapter);
+        AlunoService alunoService = new AlunoService();
+        alunoService.getAlunos(getActivity(),mRecyclerView,view);
 
         return view;
     }
