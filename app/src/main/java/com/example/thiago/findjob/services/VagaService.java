@@ -94,6 +94,7 @@ public class VagaService {
                         vaga.setCargo(cargo);
                         vaga.setIdVaga(jsonVaga.getInt("idvaga"));
                         vaga.setDesc(jsonVaga.getString("descricao"));
+                        vaga.setAnexo(jsonVaga.getString("anexo"));
                         vaga.setEmpresa(empresa);
                         vaga.setRemuneracao(jsonVaga.getString("remuneracao"));
 
@@ -130,58 +131,64 @@ public class VagaService {
         AppController.getInstance().addToRequestQueue(jore);
     }
 
-    public void fecharVaga(final Context context, final View view,final Vaga vaga,final List<Vaga> mList){
+    public void fecharVaga(final Context context, final View view,final Vaga vaga,final List<Vaga> mList, final MinhasVagasAdapter adapter){
         pDialog = new ProgressDialog(context);
         pDialog.setMessage("Aguarde...");
         pDialog.setCancelable(false);
         pDialog.show();
         params = new HashMap<String,String>();
-        params.put("idVaga", "" + vaga.getIdVaga());
-        this.url = "";
+        params.put("idvaga", "" + vaga.getIdVaga());
+        this.url = "http://findjob10.esy.es/index.php/Empresa/finalizar_vaga";
         CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 mList.remove(vaga);
                 Toast toast = Toast.makeText(context, "Vaga fechada", Toast.LENGTH_LONG);
+                adapter.notifyDataSetChanged();
                 pDialog.hide();
+                toast.show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast toast = Toast.makeText(context, "Houve um erro ao fechar vaga", Toast.LENGTH_LONG);
                 pDialog.hide();
+                toast.show();
             }
         });
 
         AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
     }
 
-    public void abrirVaga(final Context context, final View view, final Vaga vaga,final List<Vaga> mList){
+    public void abrirVaga(final Context context, final View view, final Vaga vaga,final List<Vaga> mList, final MinhasVagasFechadasAdapter adapter){
         pDialog = new ProgressDialog(context);
         pDialog.setMessage("Aguarde...");
         pDialog.setCancelable(false);
         pDialog.show();
         params = new HashMap<String,String>();
-        params.put("idVaga",""+vaga.getIdVaga());
-        this.url = "";
+        params.put("idvaga",""+vaga.getIdVaga());
+        this.url = "http://findjob10.esy.es/index.php/Empresa/reabrir_vaga";
         CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 mList.remove(vaga);
                 Toast toast = Toast.makeText(context, "Vaga reaberta", Toast.LENGTH_LONG);
+                adapter.notifyDataSetChanged();
                 pDialog.hide();
+                toast.show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast toast = Toast.makeText(context, "Houve um erro ao reabrir vaga", Toast.LENGTH_LONG);
                 pDialog.hide();
+                toast.show();
             }
         });
         AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
     }
 
-    public void candidatarVaga(final Context context, final View view, final Vaga vaga,final List<Vaga> mList){
+    public void candidatarVaga(final Context context, final View view, final Vaga vaga,final List<Vaga> mList, final VagaAdapter adapter){
         pDialog = new ProgressDialog(context);
         pDialog.setMessage("Aguarde...");
         pDialog.setCancelable(false);
@@ -203,7 +210,9 @@ public class VagaService {
                 mList.remove(vaga);
                 Log.d("deu certo","certo");
                 Toast toast = Toast.makeText(context, "Voce se candidatou a vaga", Toast.LENGTH_LONG);
+                adapter.notifyDataSetChanged();
                 pDialog.hide();
+                toast.show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -211,6 +220,7 @@ public class VagaService {
                 Log.d("deu errado","errado");
                 Toast toast = Toast.makeText(context, "Houve um erro ao candidatar-se a vaga", Toast.LENGTH_LONG);
                 pDialog.hide();
+                toast.show();
             }
         });
         AppController.getInstance().addToRequestQueue(customJsonObjectRequest);

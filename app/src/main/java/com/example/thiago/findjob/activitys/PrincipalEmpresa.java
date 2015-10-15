@@ -189,7 +189,7 @@ public class PrincipalEmpresa extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+    /*@TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Override this method in the activity that hosts the Fragment and call super
@@ -258,5 +258,5 @@ public class PrincipalEmpresa extends AppCompatActivity {
                 cursor.close();
         }
         return null;
-    }
+    }*/
 }

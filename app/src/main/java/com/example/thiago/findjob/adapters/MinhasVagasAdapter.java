@@ -49,7 +49,7 @@ public class MinhasVagasAdapter extends RecyclerView.Adapter<MinhasVagasAdapter.
             public void onClick(View view) {
                 Vaga vaga = mList.get(position);
                 VagaService vagaService = new VagaService();
-                vagaService.fecharVaga(context, view, vaga,mList);
+                vagaService.fecharVaga(context, view, vaga,mList,MinhasVagasAdapter.this);
             }
         });
 

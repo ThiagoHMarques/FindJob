@@ -10,6 +10,15 @@ public class Aluno extends Pessoa {
     private Cargo cargo;
     private String profissao;
     private String escolaridade;
+    private String anexo;
+
+    public String getAnexo() {
+        return anexo;
+    }
+
+    public void setAnexo(String anexo) {
+        this.anexo = anexo;
+    }
 
     public String getEscolaridade() {
         return escolaridade;

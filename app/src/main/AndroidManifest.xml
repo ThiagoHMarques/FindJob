@@ -7,11 +7,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".extras.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomTheme"
-        android:name="com.example.thiago.findjob.extras.AppController">
+        android:theme="@style/CustomTheme" >
         <activity
             android:name=".activitys.PrincipalAluno"
             android:label="@string/app_name" >
@@ -37,7 +37,10 @@
             android:name=".activitys.PrincipalEmpresa"
             android:label="@string/title_activity_principal_empresa" >
         </activity>
-
+        <activity
+            android:name=".activitys.DownloadActivity"
+            android:label="@string/title_activity_download" >
+        </activity>
     </application>
 
 </manifest>

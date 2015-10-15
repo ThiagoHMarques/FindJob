@@ -49,7 +49,7 @@ public class MinhasVagasFechadasAdapter extends RecyclerView.Adapter<MinhasVagas
             public void onClick(View view) {
                 Vaga vaga = mList.get(position);
                 VagaService vagaService = new VagaService();
-                vagaService.abrirVaga(context,view,vaga,mList);
+                vagaService.abrirVaga(context,view,vaga,mList,MinhasVagasFechadasAdapter.this);
             }
         });
 

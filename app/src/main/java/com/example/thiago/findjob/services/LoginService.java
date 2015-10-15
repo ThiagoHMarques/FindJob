@@ -54,6 +54,7 @@ public class LoginService {
                         aluno.setIdade(jsonObject.getInt("idade"));
                         aluno.setIdAluno(jsonObject.getInt("pessoaAluno"));
                         aluno.setId(jsonObject.getInt("idpessoa"));
+                        aluno.setAnexo(jsonObject.getString("anexo"));
                         aluno.setEmail(jsonObject.getString("email"));
                         aluno.setTelefone(jsonObject.getString("telefone"));
                         aluno.setProfissao(jsonObject.getString("profissao"));

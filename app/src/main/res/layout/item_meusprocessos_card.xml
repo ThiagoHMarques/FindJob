@@ -57,24 +57,13 @@
             android:layout_height="wrap_content"
             android:text="Ver detalhes"
             android:padding="8dp"
-            android:id="@+id/button"
+            android:id="@+id/bt_mp_detalhes"
             style="@style/ButtonTextCadView"
             android:background="@drawable/button_default"
             android:layout_below="@+id/tvdesc"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/ButtonTextCadView"
-            android:background="@drawable/button_default"
-            android:text="Candidatar-se"
-            android:padding="8dp"
-            android:id="@+id/button2"
-            android:layout_below="@+id/tvdesc"
-            android:layout_toRightOf="@+id/button"
-            android:layout_toEndOf="@+id/button" />
 
         <TextView
             android:layout_width="wrap_content"

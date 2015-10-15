@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.domain.Aluno;
+import com.example.thiago.findjob.extras.SessionManager;
+import com.google.gson.Gson;
 
 
 /**
@@ -22,6 +25,8 @@ public class DadosAlunoFragment extends Fragment {
     private Button bt_salvar,bt_cancelar;
     private TextView tv_nome,tv_email,tv_idade,tv_telefone,tv_faculdade,tv_senha,tv_confsenha;
     private TextInputLayout til_senha,til_confsenha;
+    private SessionManager sessionManager;
+    private Aluno alunoLogado;
 
     public DadosAlunoFragment() {
         // Required empty public constructor
@@ -91,14 +96,17 @@ public class DadosAlunoFragment extends Fragment {
     }
 
     public void create(){
-        tv_nome.setText("Nome");
-        tv_email.setText("Email");
-        tv_telefone.setText("Telefone");
-        tv_idade.setText("Idade");
-        tv_senha.setText("Senha");
-        tv_confsenha.setText("ConfSenha");
-        tv_telefone.setText("Telefone");
-        tv_faculdade.setText("Faculdade");
+        alunoLogado = new Aluno();
+        sessionManager = new SessionManager(getActivity());
+        Gson gson = new Gson();
+        String json = sessionManager.getUser();
+        alunoLogado = gson.fromJson(json,Aluno.class);
+
+        tv_nome.setText(alunoLogado.getNome().toString());
+        tv_email.setText(alunoLogado.getEmail().toString());
+        tv_telefone.setText(alunoLogado.getTelefone().toString());
+        tv_idade.setText(""+alunoLogado.getIdade());
+        tv_faculdade.setText(alunoLogado.getEscolaridade().toString());
 
 
         tv_nome.setEnabled(false);

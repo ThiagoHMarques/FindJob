@@ -1,6 +1,7 @@
 package com.example.thiago.findjob.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,8 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.activitys.DownloadActivity;
 import com.example.thiago.findjob.domain.Vaga;
-import com.example.thiago.findjob.fragments.VagasFragment;
 import com.example.thiago.findjob.services.VagaService;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public class VagaAdapter extends RecyclerView.Adapter<VagaAdapter.MyViewHolder> 
     private List<Vaga> mList;
     private LayoutInflater mLayoutInflater;
     private Context context;
+    private Intent intent;
+
 
     public VagaAdapter(Context c,List<Vaga> mList) {
         mLayoutInflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -51,14 +54,18 @@ public class VagaAdapter extends RecyclerView.Adapter<VagaAdapter.MyViewHolder> 
                 Log.d("id",""+position);
                 Vaga vaga = mList.get(position);
                 VagaService vagaService = new VagaService();
-                vagaService.candidatarVaga(context, view, vaga,mList);
+                vagaService.candidatarVaga(context, view, vaga,mList,VagaAdapter.this);
             }
         });
 
         holder.btdetalhes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                intent = new Intent(context, DownloadActivity.class);
+                Vaga vaga = mList.get(position);
+                intent.putExtra("url","downloadDesc/");
+                intent.putExtra("nomeArq",vaga.getAnexo());
+                context.startActivity(intent);
             }
         });
     }

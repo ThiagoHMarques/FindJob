@@ -1,5 +1,6 @@
 package com.example.thiago.findjob.services;
 
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -14,19 +15,23 @@ import com.example.thiago.findjob.domain.Aluno;
 import com.example.thiago.findjob.domain.Empresa;
 import com.example.thiago.findjob.extras.AppController;
 import com.example.thiago.findjob.extras.CustomJsonObjectRequest;
+import com.example.thiago.findjob.extras.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by THIAGO on 08/10/2015.
  */
 public class AlunoService {
     private String url;
+    private Map<String,String> params;
     private List<Aluno> alunos;
     private ProgressDialog pDialog;
 
