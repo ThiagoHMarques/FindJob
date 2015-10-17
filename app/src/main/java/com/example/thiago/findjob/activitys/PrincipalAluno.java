@@ -1,6 +1,7 @@
 package com.example.thiago.findjob.activitys;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -163,5 +164,4 @@ public class PrincipalAluno extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

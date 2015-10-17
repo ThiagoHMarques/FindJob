@@ -134,6 +134,19 @@
 
                 </TableRow>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adicionar curriculo"
+                    android:id="@+id/bt_edtAdicionarCurriculo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vaga_anexo_desc"
+                    android:textColor="@color/md_green_600"
+                    android:layout_column="1" />
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/et_senhaLayout"
                     android:layout_width="match_parent"
@@ -148,6 +161,7 @@
                         android:id="@+id/et_aluno_senha"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
+                        android:inputType="textPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -168,20 +182,14 @@
                         android:id="@+id/et_aluno_confsenha"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
+                        android:inputType="textPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Confirme sua senha"
-                        android:enabled="false"
-                        android:focusable="false" />
+                        android:hint="Confirme sua senha" />
                 </android.support.design.widget.TextInputLayout>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Adicionar curriculo"
-                    android:id="@+id/bt_edtAdicionarCurriculo"
-                    android:visibility="invisible" />
+
 
             </TableLayout>
 

@@ -41,7 +41,7 @@ public class CargoService {
     private ProgressDialog pDialog;
 
 
-    public void getCargos(final List<Cargo> cargos, final Context context, final Spinner sp_cargos,final Cargo cargo) {
+    public void getCargos(final List<Cargo> cargos, final Context context, final Spinner sp_cargos,final Cargo cargo, final Aluno aluno) {
         pDialog = new ProgressDialog(context);
         pDialog.setMessage("Por favor aguarde...");
         pDialog.setCancelable(false);
@@ -50,17 +50,31 @@ public class CargoService {
         CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
+                int index = 0;
                 try {
+                    if(aluno!=null){
+                        cargo.setNome(aluno.getCargo().getNome());
+                        cargo.setId(aluno.getCargo().getId());
+                    }
+
                     JSONArray jsonCargos = jsonObject.getJSONArray("cargos");
                     for(int i=0; i < jsonCargos.length(); i++) {
-                        Cargo cargo = new Cargo();
+                        Cargo cargoM = new Cargo();
                         JSONObject jsonCargo = jsonCargos.getJSONObject(i);
-                        cargo.setNome(jsonCargo.getString("desc"));
-                        cargo.setId(jsonCargo.getInt("idcargo"));
-                        cargos.add(cargo);
+                        cargoM.setNome(jsonCargo.getString("desc"));
+                        cargoM.setId(jsonCargo.getInt("idcargo"));
+                        cargos.add(cargoM);
+                        if(cargo.getNome()!=null) {
+                            if (cargoM.getNome().equals(cargo.getNome())) {
+                                index = i;
+                            }
+                        }
                     }
-                    cargo.setNome(cargos.get(0).getNome());
-                    cargo.setId(cargos.get(0).getId());
+
+                    if(aluno==null){
+                        cargo.setNome(cargos.get(0).getNome());
+                        cargo.setId(cargos.get(0).getId());
+                    }
 
                     String[] cargosString = new String[cargos.size()];
                     for(int i=0;cargos.size()>i;i++){
@@ -70,6 +84,7 @@ public class CargoService {
                             android.R.layout.simple_spinner_dropdown_item,
                             cargosString);
                     sp_cargos.setAdapter(spinnerArrayAdapter);
+                    sp_cargos.setSelection(index);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

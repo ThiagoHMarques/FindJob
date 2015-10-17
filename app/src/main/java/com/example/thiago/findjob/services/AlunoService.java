@@ -6,10 +6,12 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.example.thiago.findjob.activitys.PrincipalAluno;
 import com.example.thiago.findjob.adapters.AlunoAdapter;
 import com.example.thiago.findjob.adapters.CandidatoAdapter;
 import com.example.thiago.findjob.adapters.EmpresaAdapter;
@@ -20,11 +22,13 @@ import com.example.thiago.findjob.domain.Vaga;
 import com.example.thiago.findjob.extras.AppController;
 import com.example.thiago.findjob.extras.CustomJsonObjectRequest;
 import com.example.thiago.findjob.extras.SessionManager;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +43,7 @@ public class AlunoService {
     private List<Aluno> alunos;
     private List<Vaga> vagas;
     private ProgressDialog pDialog;
+    private SessionManager sessionManager;
 
     public void getAlunos(final Context context, final RecyclerView recyclerView, View view){
         url = "http://findjob10.esy.es/index.php/Aluno/listar_todos";
@@ -98,7 +103,7 @@ public class AlunoService {
         pDialog.setMessage("Carregando alunos...");
         pDialog.setCancelable(false);
         pDialog.show();
-        params.put("idempresa",""+empresa.getIdEmpresa());
+        params.put("idempresa", "" + empresa.getIdEmpresa());
 
         CustomJsonObjectRequest jor = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
             @Override
@@ -153,5 +158,52 @@ public class AlunoService {
             }
         });
         AppController.getInstance().addToRequestQueue(jor);
+    }
+
+    public void inserir(final Aluno aluno, final Context context, String senha, String file){
+        url = "http://findjob10.esy.es/index.php/Aluno/update";
+        pDialog = new ProgressDialog(context);
+        params = new HashMap<String,String>();
+        pDialog.setMessage("Aguarde...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        params.put("nome", aluno.getNome());
+        params.put("email", aluno.getEmail());
+        params.put("telefone", aluno.getTelefone());
+        params.put("idade", "" + aluno.getIdade());
+        params.put("escolaridade", aluno.getEscolaridade());
+        params.put("id", "" + aluno.getId());
+        params.put("idaluno", "" + aluno.getIdAluno());
+        params.put("idcargo", "" + aluno.getCargo().getId());
+
+        if(senha!=null){
+            params.put("senha",senha);
+        }
+        if(file!=null){
+            params.put("anexo",file);
+        }
+        CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Gson gson = new Gson();
+                String usuario = gson.toJson(aluno);
+                sessionManager = new SessionManager(context);
+                sessionManager.putUser(usuario);
+                sessionManager.putUserType("aluno");
+                PrincipalAluno principalAluno = new PrincipalAluno();
+                Toast toast = Toast.makeText(context,"Dados atualizados!", Toast.LENGTH_LONG);
+                toast.show();
+                pDialog.hide();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast toast = Toast.makeText(context,"Houve um erro ao atualizar os dados!", Toast.LENGTH_LONG);
+                toast.show();
+                pDialog.hide();
+            }
+        });
+        AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
     }
 }

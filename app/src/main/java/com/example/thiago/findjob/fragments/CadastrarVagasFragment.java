@@ -53,7 +53,7 @@ public class CadastrarVagasFragment extends Fragment {
     private Intent intent = new Intent();
     private FileManager fileManager = new FileManager();
     private Vaga vaga;
-    private CargoService cargoService = new CargoService();;
+    private CargoService cargoService = new CargoService();
     private VagaService vagaService = new VagaService();
 
     public CadastrarVagasFragment() {
@@ -76,7 +76,7 @@ public class CadastrarVagasFragment extends Fragment {
         sp_cargos = (Spinner) view.findViewById(R.id.sp_cargos);
 
         cargo = new Cargo();
-        cargoService.getCargos(cargos, getActivity(), sp_cargos, cargo);
+        cargoService.getCargos(cargos, getActivity(), sp_cargos, cargo, null);
 
 
         sp_cargos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
