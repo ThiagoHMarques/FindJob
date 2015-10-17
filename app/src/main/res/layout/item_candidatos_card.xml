@@ -97,6 +97,29 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+        <TextView
+            android:id="@+id/tvvaga"
+            android:text="Vaga"
+            android:paddingTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvcurso"
+            android:layout_toRightOf="@+id/lb_vaga"
+            android:layout_toEndOf="@+id/lb_vaga" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/md_black_1000"
+            android:text="Vaga:"
+            android:id="@+id/lb_vaga"
+            android:layout_below="@+id/tvcurso"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,12 +128,9 @@
             android:id="@+id/bt_vercurriculo"
             style="@style/ButtonTextCadView"
             android:background="@drawable/button_default"
-            android:layout_below="@+id/tvcurso"
+            android:layout_below="@+id/tvvaga"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-
-
-
 
 
     </RelativeLayout>

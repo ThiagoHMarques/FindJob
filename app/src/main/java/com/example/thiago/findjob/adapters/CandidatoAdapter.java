@@ -19,22 +19,24 @@ import java.util.List;
 /**
  * Created by THIAGO on 21/09/2015.
  */
-public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.MyViewHolder> {
+public class CandidatoAdapter extends RecyclerView.Adapter<CandidatoAdapter.MyViewHolder> {
 
     private List<Aluno> mList;
+    private List<Vaga> mListV;
     private LayoutInflater mLayoutInflater;
     private Intent intent;
     private Context context;
 
-    public AlunoAdapter(Context c,List<Aluno> mList) {
+    public CandidatoAdapter(Context c, List<Aluno> mList, List<Vaga> mListV) {
         mLayoutInflater = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mList = mList;
+        this.mListV = mListV;
         this.context = c;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = mLayoutInflater.inflate(R.layout.item_aluno_card, parent,false);
+        View v = mLayoutInflater.inflate(R.layout.item_candidatos_card, parent,false);
         MyViewHolder mvh = new MyViewHolder(v);
         return mvh;
     }
@@ -45,6 +47,7 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.MyViewHolder
         holder.tvcurso.setText(mList.get(position).getEscolaridade().toString());
         holder.tvemail.setText(mList.get(position).getEmail().toString());
         holder.tvtelefone.setText(mList.get(position).getTelefone().toString());
+        holder.tvvaga.setText(mListV.get(position).getCargo().getNome().toString());
 
         holder.bt_vercurriculo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +67,7 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvnome,tvcurso,tvtelefone,tvemail;
+        public TextView tvnome,tvcurso,tvtelefone,tvemail,tvvaga;
         public Button bt_vercurriculo;
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -73,6 +76,7 @@ public class AlunoAdapter extends RecyclerView.Adapter<AlunoAdapter.MyViewHolder
             tvcurso = (TextView) itemView.findViewById(R.id.tvcurso);
             tvtelefone = (TextView) itemView.findViewById(R.id.tvtelefone);
             tvemail = (TextView) itemView.findViewById(R.id.tvemail);
+            tvvaga = (TextView) itemView.findViewById(R.id.tvvaga);
             bt_vercurriculo = (Button) itemView.findViewById(R.id.bt_vercurriculo);
         }
     }

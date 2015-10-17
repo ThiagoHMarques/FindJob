@@ -92,11 +92,13 @@ public class VagaService {
                         empresa.setTelefone(jsonVaga.getString("telefone"));
 
                         vaga.setCargo(cargo);
+                        vaga.setEmpresa(empresa);
                         vaga.setIdVaga(jsonVaga.getInt("idvaga"));
                         vaga.setDesc(jsonVaga.getString("descricao"));
                         vaga.setAnexo(jsonVaga.getString("anexo"));
-                        vaga.setEmpresa(empresa);
                         vaga.setRemuneracao(jsonVaga.getString("remuneracao"));
+
+
 
                         mVagas.add(vaga);
                     }
@@ -208,7 +210,7 @@ public class VagaService {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 mList.remove(vaga);
-                Log.d("deu certo","certo");
+                Log.d("deu certo", "certo");
                 Toast toast = Toast.makeText(context, "Voce se candidatou a vaga", Toast.LENGTH_LONG);
                 adapter.notifyDataSetChanged();
                 pDialog.hide();
@@ -219,6 +221,46 @@ public class VagaService {
             public void onErrorResponse(VolleyError volleyError) {
                 Log.d("deu errado","errado");
                 Toast toast = Toast.makeText(context, "Houve um erro ao candidatar-se a vaga", Toast.LENGTH_LONG);
+                pDialog.hide();
+                toast.show();
+            }
+        });
+        AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
+    }
+
+    public void inserir(Vaga vaga, final Context context){
+        pDialog = new ProgressDialog(context);
+        url = "http://findjob10.esy.es/index.php/Empresa/cadastrar_vaga";
+        pDialog.setMessage("Aguarde...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        Empresa empresaLogada = new Empresa();
+        sessionManager = new SessionManager(context);
+        Gson gson = new Gson();
+        String json = sessionManager.getUser();
+        empresaLogada = gson.fromJson(json,Empresa.class);
+
+        vaga.setEmpresa(empresaLogada);
+
+        params = new HashMap<String,String>();
+        params.put("descricao",vaga.getDesc());
+        params.put("remuneracao",vaga.getRemuneracao());
+        params.put("anexo",vaga.getAnexo());
+        params.put("idempresa",""+vaga.getEmpresa().getIdEmpresa());
+        params.put("idcargo",""+vaga.getCargo().getId());
+        params.put("idtipovaga","1");
+
+        CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Toast toast = Toast.makeText(context, "Vaga cadastrada com sucesso!", Toast.LENGTH_LONG);
+                pDialog.hide();
+                toast.show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast toast = Toast.makeText(context, "Houve um erro ao cadastrar a vaga!", Toast.LENGTH_LONG);
                 pDialog.hide();
                 toast.show();
             }

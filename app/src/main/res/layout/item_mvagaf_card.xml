@@ -73,8 +73,8 @@
             android:padding="8dp"
             android:id="@+id/bt_mvf_reabrir"
             android:layout_below="@+id/tvdesc"
-            android:layout_toRightOf="@+id/button"
-            android:layout_toEndOf="@+id/button" />
+            android:layout_toRightOf="@+id/tvremunicacao"
+            android:layout_toEndOf="@+id/tvremunicacao" />
 
         <TextView
             android:layout_width="wrap_content"

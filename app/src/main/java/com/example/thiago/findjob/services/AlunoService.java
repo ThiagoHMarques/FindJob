@@ -4,15 +4,19 @@ import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.thiago.findjob.adapters.AlunoAdapter;
+import com.example.thiago.findjob.adapters.CandidatoAdapter;
 import com.example.thiago.findjob.adapters.EmpresaAdapter;
 import com.example.thiago.findjob.domain.Aluno;
+import com.example.thiago.findjob.domain.Cargo;
 import com.example.thiago.findjob.domain.Empresa;
+import com.example.thiago.findjob.domain.Vaga;
 import com.example.thiago.findjob.extras.AppController;
 import com.example.thiago.findjob.extras.CustomJsonObjectRequest;
 import com.example.thiago.findjob.extras.SessionManager;
@@ -33,6 +37,7 @@ public class AlunoService {
     private String url;
     private Map<String,String> params;
     private List<Aluno> alunos;
+    private List<Vaga> vagas;
     private ProgressDialog pDialog;
 
     public void getAlunos(final Context context, final RecyclerView recyclerView, View view){
@@ -57,6 +62,7 @@ public class AlunoService {
                         aluno.setId(jsonAluno.getInt("idpessoa"));
                         aluno.setIdade(jsonAluno.getInt("idade"));
                         aluno.setProfissao(jsonAluno.getString("profissao"));
+                        aluno.setAnexo(jsonAluno.getString("anexo"));
                         aluno.setEmail(jsonAluno.getString("email"));
                         aluno.setNome(jsonAluno.getString("nome"));
                         aluno.setTelefone(jsonAluno.getString("telefone"));
@@ -83,5 +89,69 @@ public class AlunoService {
         });
         AppController.getInstance().addToRequestQueue(jor);
 
+    }
+
+    public void candidatos(final Context context, final RecyclerView recyclerView, View view, Empresa empresa){
+        url = "http://findjob10.esy.es/index.php/Empresa/listar_candidatos";
+        pDialog = new ProgressDialog(context);
+        params = new HashMap<String,String>();
+        pDialog.setMessage("Carregando alunos...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        params.put("idempresa",""+empresa.getIdEmpresa());
+
+        CustomJsonObjectRequest jor = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                alunos = new ArrayList<Aluno>();
+                vagas = new ArrayList<Vaga>();
+                try {
+                    JSONArray jsonAlunos = jsonObject.getJSONArray("alunos");
+                    for(int i=0; i < jsonAlunos.length(); i++) {
+                        JSONObject jsonAluno = jsonAlunos.getJSONObject(i);
+                        Aluno aluno = new Aluno();
+                        Vaga vaga = new Vaga();
+                        Cargo cargo = new Cargo();
+
+                        aluno.setEscolaridade(jsonAluno.getString("escolaridade"));
+                        aluno.setIdAluno(jsonAluno.getInt("idaluno"));
+                        aluno.setId(jsonAluno.getInt("idpessoa"));
+                        aluno.setIdade(jsonAluno.getInt("idade"));
+                        aluno.setProfissao(jsonAluno.getString("profissao"));
+                        aluno.setAnexo(jsonAluno.getString("anexo"));
+                        aluno.setEmail(jsonAluno.getString("email"));
+                        aluno.setNome(jsonAluno.getString("nome"));
+                        aluno.setTelefone(jsonAluno.getString("telefone"));
+
+                        cargo.setId(jsonAluno.getInt("idcargo"));
+                        cargo.setNome(jsonAluno.getString("desc"));
+
+                        vaga.setCargo(cargo);
+                        vaga.setIdVaga(jsonAluno.getInt("idvaga"));
+                        vaga.setDesc(jsonAluno.getString("descricao"));
+                        vaga.setAnexo(jsonAluno.getString("anexo"));
+                        vaga.setRemuneracao(jsonAluno.getString("remuneracao"));
+
+                        vagas.add(vaga);
+                        alunos.add(aluno);
+                    }
+
+                    CandidatoAdapter candidatoAdapter = new CandidatoAdapter(context,alunos,vagas);
+                    recyclerView.setAdapter(candidatoAdapter);
+
+                    pDialog.hide();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    pDialog.hide();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                pDialog.hide();
+            }
+        });
+        AppController.getInstance().addToRequestQueue(jor);
     }
 }

@@ -27,6 +27,7 @@ import com.example.thiago.findjob.domain.Empresa;
 import com.example.thiago.findjob.extras.SessionManager;
 import com.example.thiago.findjob.fragments.AlunosFragment;
 import com.example.thiago.findjob.fragments.CadastrarVagasFragment;
+import com.example.thiago.findjob.fragments.CandidatosFragment;
 import com.example.thiago.findjob.fragments.DadosAlunoFragment;
 import com.example.thiago.findjob.fragments.DadosEmpresaFragment;
 import com.example.thiago.findjob.fragments.EmpresasFragment;
@@ -110,6 +111,7 @@ public class PrincipalEmpresa extends AppCompatActivity {
                 .withAccountHeader(headerNavigationLeft)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Inicio"),
+                        new SecondaryDrawerItem().withName("Candidatos").withIcon(getResources().getDrawable(R.drawable.tooltipoutlineplus)),
                         new SecondaryDrawerItem().withName("Minhas vagas abertas").withIcon(getResources().getDrawable(R.drawable.tooltip)),
                         new SecondaryDrawerItem().withName("Minhas vagas fechadas").withIcon(getResources().getDrawable(R.drawable.tooltip)),
                         new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account)),
@@ -128,31 +130,37 @@ public class PrincipalEmpresa extends AppCompatActivity {
                             ft.commit();
                         }
                         if (i == 2) {
+                            CandidatosFragment candidatosFragment = new CandidatosFragment();
+                            FragmentTransaction ft = fm.beginTransaction();
+                            ft.replace(R.id.content, candidatosFragment, "candidatosFragment");
+                            ft.commit();
+                        }
+                        if (i == 3) {
                             MinhasVagasFragment minhasVagasFragment = new MinhasVagasFragment();
                             FragmentTransaction ft = fm.beginTransaction();
                             ft.replace(R.id.content, minhasVagasFragment, "minhasVagasFragment");
                             ft.commit();
                         }
-                        if (i == 3) {
+                        if (i == 4) {
                             MinhasVagasFechadasFragment minhasVagasFechadasFragment = new MinhasVagasFechadasFragment();
                             FragmentTransaction ft = fm.beginTransaction();
                             ft.replace(R.id.content, minhasVagasFechadasFragment, "minhasVagasFechadasFragment");
                             ft.commit();
                         }
-                        if (i == 4) {
+                        if (i == 5) {
                             DadosEmpresaFragment dadosEmpresaFragment = new DadosEmpresaFragment();
                             FragmentTransaction ft = fm.beginTransaction();
                             ft.replace(R.id.content, dadosEmpresaFragment, "dadosEmpresaFragment");
                             ft.commit();
                         }
-                        if (i == 5) {
+                        if (i == 6) {
                             CadastrarVagasFragment cadastrarVagasFragment = new CadastrarVagasFragment();
                             FragmentTransaction ft = fm.beginTransaction();
                             ft.replace(R.id.content, cadastrarVagasFragment, "cadastrarVagasFragment");
                             ft.commit();
                         }
 
-                        if (i == 6) {
+                        if (i == 7) {
                             sessionManager.logout();
                             intent = new Intent(PrincipalEmpresa.this,Login.class);
                             startActivity(intent);
