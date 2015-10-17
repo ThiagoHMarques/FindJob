@@ -180,9 +180,8 @@ public class AlunoService {
         if(senha!=null){
             params.put("senha",senha);
         }
-        if(file!=null){
-            params.put("anexo",file);
-        }
+        params.put("anexo", file);
+
         CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {

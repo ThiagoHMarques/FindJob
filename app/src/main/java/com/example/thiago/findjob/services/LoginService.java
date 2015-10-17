@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.example.thiago.findjob.activitys.PrincipalAluno;
 import com.example.thiago.findjob.activitys.PrincipalEmpresa;
 import com.example.thiago.findjob.domain.Aluno;
+import com.example.thiago.findjob.domain.Cargo;
 import com.example.thiago.findjob.domain.Empresa;
 import com.example.thiago.findjob.domain.Pessoa;
 import com.example.thiago.findjob.extras.AppController;
@@ -50,6 +51,7 @@ public class LoginService {
                 try{
                     if(jsonObject.getInt("tipousuario")==1){
                         Aluno aluno = new Aluno();
+                        Cargo cargo = new Cargo();
                         aluno.setNome(jsonObject.getString("nome"));
                         aluno.setIdade(jsonObject.getInt("idade"));
                         aluno.setIdAluno(jsonObject.getInt("pessoaAluno"));
@@ -59,6 +61,11 @@ public class LoginService {
                         aluno.setTelefone(jsonObject.getString("telefone"));
                         aluno.setProfissao(jsonObject.getString("profissao"));
                         aluno.setEscolaridade(jsonObject.getString("escolaridade"));
+
+                        cargo.setNome(jsonObject.getString("desc"));
+                        cargo.setId(jsonObject.getInt("idcargo"));
+
+                        aluno.setCargo(cargo);
 
                         Gson gson = new Gson();
                         String usuario = gson.toJson(aluno);

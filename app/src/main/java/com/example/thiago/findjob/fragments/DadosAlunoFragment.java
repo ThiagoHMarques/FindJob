@@ -44,8 +44,7 @@ import java.util.List;
 public class DadosAlunoFragment extends Fragment {
     private FloatingActionButton bt_editar;
     private Button bt_salvar,bt_cancelar,bt_curriculo;
-    private TextView tv_nome,tv_email,tv_idade,tv_telefone,tv_faculdade,tv_senha,tv_confsenha;
-    private EditText et_anexo_desc;
+    private TextView tv_nome,tv_email,tv_idade,tv_telefone,tv_faculdade,tv_senha,tv_confsenha,et_anexo_desc;
     private TextInputLayout til_senha,til_confsenha;
     private SessionManager sessionManager;
     private Aluno alunoLogado;
@@ -54,7 +53,7 @@ public class DadosAlunoFragment extends Fragment {
     private Cargo cargo;
     private List<Cargo> cargos = new ArrayList<Cargo>();
     private FileManager fileManager = new FileManager();
-    private String file;
+    private String file = null;
     private Intent intent = new Intent();
 
     public DadosAlunoFragment() {
@@ -68,7 +67,7 @@ public class DadosAlunoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dados_aluno, container, false);
 
-        et_anexo_desc = (EditText) view.findViewById(R.id.vaga_anexo_desc);
+        et_anexo_desc = (TextView) view.findViewById(R.id.vaga_anexo_desc);
         bt_editar = (FloatingActionButton) view.findViewById(R.id.fab_edit);
         tv_nome = (TextView) view.findViewById(R.id.et_aluno_nome);
         sp_cargos = (Spinner) view.findViewById(R.id.sp_cargos);
@@ -89,7 +88,6 @@ public class DadosAlunoFragment extends Fragment {
         Gson gson = new Gson();
         String json = sessionManager.getUser();
         alunoLogado = gson.fromJson(json,Aluno.class);
-
         cargo = new Cargo();
         cargoService.getCargos(cargos, getActivity(), sp_cargos, cargo,alunoLogado);
 
@@ -200,6 +198,8 @@ public class DadosAlunoFragment extends Fragment {
         tv_confsenha.setVisibility(View.INVISIBLE);
         tv_telefone.setEnabled(false);
         tv_faculdade.setEnabled(false);
+        et_anexo_desc.setText("");
+        file = null;
         til_confsenha.setVisibility(View.INVISIBLE);
         til_senha.setVisibility(View.INVISIBLE);
         bt_salvar.setVisibility(View.INVISIBLE);
