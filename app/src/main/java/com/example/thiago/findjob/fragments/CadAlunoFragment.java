@@ -121,6 +121,8 @@ public class CadAlunoFragment extends Fragment {
                     ok=false;
                 }if(et_senha.getText().toString()==""){
                     ok=false;
+                }if(et_anexo_desc.getText().toString()==""){
+                    ok=false;
                 }
                 if(!ok){
                     Toast toast = Toast.makeText(getActivity(), "Preencha todos os dados", Toast.LENGTH_LONG);
