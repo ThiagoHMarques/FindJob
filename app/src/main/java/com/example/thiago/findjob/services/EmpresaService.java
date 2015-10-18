@@ -127,8 +127,36 @@ public class EmpresaService {
         AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
     }
 
-    public void inserir(Empresa empresa, Context context){
+    public void inserir(Empresa empresa, final Context context){
+        url = "http://findjob10.esy.es/index.php/Empresa/inserir";
+        pDialog = new ProgressDialog(context);
+        params = new HashMap<String,String>();
+        pDialog.setMessage("Aguarde...");
+        pDialog.setCancelable(false);
+        pDialog.show();
 
+        params.put("nome", empresa.getNome());
+        params.put("email", empresa.getEmail());
+        params.put("telefone", empresa.getTelefone());
+        params.put("segmento", empresa.getSegmento());
+        params.put("senha", empresa.getSenha());
+
+        CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Toast toast = Toast.makeText(context,"Cadastro efetuado com sucesso!", Toast.LENGTH_LONG);
+                toast.show();
+                pDialog.hide();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast toast = Toast.makeText(context,"Houve um erro ao se cadastrar!", Toast.LENGTH_LONG);
+                toast.show();
+                pDialog.hide();
+            }
+        });
+        AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
     }
 
 }

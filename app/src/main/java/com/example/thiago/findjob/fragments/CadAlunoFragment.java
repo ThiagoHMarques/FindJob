@@ -43,9 +43,7 @@ public class CadAlunoFragment extends Fragment {
     private EditText et_nome,et_email,et_idade,et_telefone,et_faculdade,et_senha,et_confsenha;
     private TextView et_anexo_desc;
     private Spinner sp_cargos;
-    private ArrayAdapter<Cargo> adp_cargos;
     private String file;
-    private Bundle bundle;
     private Intent intent = new Intent();
     private FileManager fileManager = new FileManager();
     private CargoService cargoService = new CargoService();
