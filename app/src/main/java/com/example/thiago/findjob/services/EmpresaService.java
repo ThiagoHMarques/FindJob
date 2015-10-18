@@ -97,8 +97,8 @@ public class EmpresaService {
         params.put("email", empresa.getEmail());
         params.put("telefone", empresa.getTelefone());
         params.put("segmento", empresa.getSegmento());
-        params.put("id",""+ empresa.getId());
-        params.put("idempresa",""+ empresa.getIdEmpresa());
+        params.put("id", "" + empresa.getId());
+        params.put("idempresa", "" + empresa.getIdEmpresa());
 
         if(senha!=null){
             params.put("senha",senha);
@@ -125,6 +125,10 @@ public class EmpresaService {
             }
         });
         AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
+    }
+
+    public void inserir(Empresa empresa, Context context){
+
     }
 
 }

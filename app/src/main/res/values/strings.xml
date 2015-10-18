@@ -16,7 +16,7 @@
     <string name="et_email">Email</string>
     <string name="et_idade">Idade</string>
     <string name="et_telefone">Telefone/Celular</string>
-    <string name="et_faculdade">Nome da Faculdade</string>
+    <string name="et_faculdade">Nome do Curso</string>
     <string name="et_segmento">Segmento</string>
     <string name="cadEmpresa_nome">Nome</string>
     <string name="et_cargo">Cargo Pretendido</string>

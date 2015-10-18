@@ -205,4 +205,40 @@ public class AlunoService {
         });
         AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
     }
+
+    public void inserir(Aluno aluno, final Context context){
+        url = "http://findjob10.esy.es/index.php/Aluno/inserir";
+        pDialog = new ProgressDialog(context);
+        params = new HashMap<String,String>();
+        pDialog.setMessage("Aguarde...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        params.put("nome", aluno.getNome());
+        params.put("email", aluno.getEmail());
+        params.put("telefone", aluno.getTelefone());
+        params.put("idade", "" + aluno.getIdade());
+        params.put("escolaridade", aluno.getEscolaridade());
+        params.put("senha", aluno.getSenha());
+        params.put("idcargo", "" + aluno.getCargo().getId());
+        params.put("anexo",aluno.getAnexo());
+
+        CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                Toast toast = Toast.makeText(context,"Cadastro efetuado com sucesso!", Toast.LENGTH_LONG);
+                toast.show();
+                pDialog.hide();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast toast = Toast.makeText(context,"Houve um erro ao se cadastrar!", Toast.LENGTH_LONG);
+                toast.show();
+                pDialog.hide();
+            }
+        });
+        AppController.getInstance().addToRequestQueue(customJsonObjectRequest);
+
+    }
 }
