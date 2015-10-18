@@ -253,6 +253,7 @@ public class VagaService {
         CustomJsonObjectRequest customJsonObjectRequest = new CustomJsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
+                Log.d("id",jsonObject.toString());
                 Toast toast = Toast.makeText(context, "Vaga cadastrada com sucesso!", Toast.LENGTH_LONG);
                 pDialog.hide();
                 toast.show();

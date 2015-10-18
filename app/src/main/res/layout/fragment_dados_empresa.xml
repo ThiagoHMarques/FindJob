@@ -132,9 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Confirme sua senha"
-                        android:enabled="false"
-                        android:focusable="false" />
+                        android:hint="Confirme sua senha" />
                 </android.support.design.widget.TextInputLayout>
             </TableLayout>
         </ScrollView>

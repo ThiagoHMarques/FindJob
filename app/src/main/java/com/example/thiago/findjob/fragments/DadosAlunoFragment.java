@@ -155,12 +155,12 @@ public class DadosAlunoFragment extends Fragment {
                 if(tv_senha.getText().toString().equals("") && tv_confsenha.getText().toString().equals("")){
                     AlunoService alunoService = new AlunoService();
                     String senha = null;
-                    alunoService.inserir(alunoLogado,getActivity(),senha,file);
+                    alunoService.update(alunoLogado,getActivity(),senha,file);
                 }else{
                     if(tv_senha.getText().toString().equals(tv_confsenha.getText().toString())){
                         AlunoService alunoService = new AlunoService();
                         String senha = tv_senha.getText().toString();
-                        alunoService.inserir(alunoLogado,getActivity(),senha,file);
+                        alunoService.update(alunoLogado,getActivity(),senha,file);
                     }else{
                         Toast toast = Toast.makeText(getActivity(),"Senhas não conferem!", Toast.LENGTH_LONG);
                         toast.show();

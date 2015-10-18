@@ -160,7 +160,7 @@ public class AlunoService {
         AppController.getInstance().addToRequestQueue(jor);
     }
 
-    public void inserir(final Aluno aluno, final Context context, String senha, String file){
+    public void update(final Aluno aluno, final Context context, String senha, String file){
         url = "http://findjob10.esy.es/index.php/Aluno/update";
         pDialog = new ProgressDialog(context);
         params = new HashMap<String,String>();

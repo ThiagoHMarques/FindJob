@@ -10,10 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.thiago.findjob.R;
+import com.example.thiago.findjob.domain.Aluno;
+import com.example.thiago.findjob.domain.Cargo;
 import com.example.thiago.findjob.domain.Empresa;
 import com.example.thiago.findjob.extras.SessionManager;
+import com.example.thiago.findjob.services.AlunoService;
+import com.example.thiago.findjob.services.EmpresaService;
 import com.google.gson.Gson;
 
 /**
@@ -53,6 +58,30 @@ public class DadosEmpresaFragment extends Fragment {
 
         create();
 
+        bt_salvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                empresaLogada.setNome(et_nome.getText().toString());
+                empresaLogada.setSegmento(et_segmento.getText().toString());
+                empresaLogada.setTelefone(et_telefone.getText().toString());
+                empresaLogada.setEmail(et_email.getText().toString());
+
+                if(et_senha.getText().toString().equals("") && et_confsenha.getText().toString().equals("")){
+                    EmpresaService empresaService = new EmpresaService();
+                    String senha = null;
+                    empresaService.update(empresaLogada, getActivity(), senha);
+                }else{
+                    if(et_senha.getText().toString().equals(et_confsenha.getText().toString())){
+                        EmpresaService empresaService = new EmpresaService();
+                        String senha = et_senha.getText().toString();
+                        empresaService.update(empresaLogada,getActivity(),senha);
+                    }else{
+                        Toast toast = Toast.makeText(getActivity(),"Senhas não conferem!", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+            }
+        });
 
         bt_edit.setOnClickListener(new View.OnClickListener() {
             @Override
