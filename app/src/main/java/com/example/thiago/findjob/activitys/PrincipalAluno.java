@@ -94,11 +94,11 @@ public class PrincipalAluno extends ActionBarActivity {
                 .withDisplayBelowStatusBar(true)
                 .withAccountHeader(headerNavigationLeft)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Inicio"),
+                        new PrimaryDrawerItem().withName("Inicio").withIcon(getResources().getDrawable(R.drawable.home)),
                         new SecondaryDrawerItem().withName("Empresas").withIcon(getResources().getDrawable(R.drawable.briefcase)),
                         new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account)),
                         new SecondaryDrawerItem().withName("Meus Processos").withIcon(getResources().getDrawable(R.drawable.eye)),
-                        new SecondaryDrawerItem().withName("Logout")
+                        new SecondaryDrawerItem().withName("Logout").withIcon(getResources().getDrawable(R.drawable.exit))
                 )
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(0)

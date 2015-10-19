@@ -3,6 +3,7 @@ package com.example.thiago.findjob.services;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.example.thiago.findjob.activitys.Login;
 import com.example.thiago.findjob.activitys.PrincipalAluno;
 import com.example.thiago.findjob.adapters.AlunoAdapter;
 import com.example.thiago.findjob.adapters.CandidatoAdapter;
@@ -44,6 +46,7 @@ public class AlunoService {
     private List<Vaga> vagas;
     private ProgressDialog pDialog;
     private SessionManager sessionManager;
+    private Intent intent;
 
     public void getAlunos(final Context context, final RecyclerView recyclerView, View view){
         url = "http://findjob10.esy.es/index.php/Aluno/listar_todos";
@@ -228,7 +231,9 @@ public class AlunoService {
             public void onResponse(JSONObject jsonObject) {
                 Toast toast = Toast.makeText(context,"Cadastro efetuado com sucesso!", Toast.LENGTH_LONG);
                 toast.show();
+                intent = new Intent(context,Login.class);
                 pDialog.hide();
+                context.startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override

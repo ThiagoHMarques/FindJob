@@ -110,13 +110,13 @@ public class PrincipalEmpresa extends AppCompatActivity {
                 .withDisplayBelowStatusBar(true)
                 .withAccountHeader(headerNavigationLeft)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Inicio"),
-                        new SecondaryDrawerItem().withName("Candidatos").withIcon(getResources().getDrawable(R.drawable.tooltipoutlineplus)),
-                        new SecondaryDrawerItem().withName("Minhas vagas abertas").withIcon(getResources().getDrawable(R.drawable.tooltip)),
+                        new PrimaryDrawerItem().withName("Inicio").withIcon(getResources().getDrawable(R.drawable.home)),
+                        new SecondaryDrawerItem().withName("Candidatos").withIcon(getResources().getDrawable(R.drawable.accountmultiple)),
+                        new SecondaryDrawerItem().withName("Minhas vagas abertas").withIcon(getResources().getDrawable(R.drawable.tooltipoutline)),
                         new SecondaryDrawerItem().withName("Minhas vagas fechadas").withIcon(getResources().getDrawable(R.drawable.tooltip)),
                         new SecondaryDrawerItem().withName("Dados cadastrais").withIcon(getResources().getDrawable(R.drawable.account)),
                         new SecondaryDrawerItem().withName("Cadastrar vaga").withIcon(getResources().getDrawable(R.drawable.tooltipoutlineplus)),
-                        new SecondaryDrawerItem().withName("Logout")
+                        new SecondaryDrawerItem().withName("Logout").withIcon(getResources().getDrawable(R.drawable.exit))
                 )
                 .withSavedInstance(savedInstanceState)
                 .withSelectedItem(0)

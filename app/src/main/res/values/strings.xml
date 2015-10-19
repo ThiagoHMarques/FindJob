@@ -10,7 +10,7 @@
     <string name="title_activity_login">Login</string>
     <string name="lg_et_usuario">Usuário</string>
     <string name="lg_et_senha">Senha</string>
-    <string name="lg_et_cadastrar">Ainda não possui cadastro?\n Clique aqui e cadastrar-se!</string>
+    <string name="lg_et_cadastrar">Ainda não possui cadastro?\n Clique aqui e cadastre-se!</string>
     <string name="title_activity_cadastrar">Cadastrar</string>
     <string name="cadAluno_et_nome">Nome Completo</string>
     <string name="et_email">Email</string>
